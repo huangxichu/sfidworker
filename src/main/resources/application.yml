@@ -1,0 +1,31 @@
+server:
+  port: 7200
+spring:
+  profiles:
+    active: 7200
+  application:
+    name: sfidworker
+
+management:
+  endpoints:
+    #    conditions:
+    #      enabled: true
+    health:
+      sensitive: false #关闭过滤敏感信息
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+
+logging:
+  #  pattern:
+  #    console: "%d - %msg%n"
+  file: /tmp/logs/${spring.application.name}/${server.port}/log.log #日志记录文件存放位置，上线时修改为服务器的绝对路径 /usr/log
+  #  level: #如果使用Spring boot Admin 作为日志监管平台，改配置可以忽略，Admin 可以在线配置日志级别
+  #    root: ERROR
+  #    com:
+  #      hjyd: ERROR
+  level:
+    com.hjyd: error

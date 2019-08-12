@@ -1,0 +1,38 @@
+#bootstrap 会优先于 application 加载
+eureka:
+  instance:
+    prefer-ip-address: true
+    lease-renewal-interval-in-seconds: 10
+    health-check-url-path: /actuator/health
+    ip-address: 192.168.10.11
+    instance-id: ${spring.application.name}@${eureka.instance.ip-address}@${server.port}
+  client:
+    service-url:
+      defaultZone: http://jenkins.ce:6001/eureka/,http://jenkins.ce:6002/eureka/,http://jenkins.ce:6003/eureka/ #多个注册中心以逗号, 隔开
+    registry-fetch-interval-seconds: 5
+#spring:
+#  cloud:
+#    config:
+#      label: test #访问的分支
+#      #uri: http://jenkins.ce:5001/ #config server 的地址
+#      name: dataSource,management,ftp,common #文件名称，可以写多个，用逗号隔开
+#      profile: test
+#      fail-fast: true #没有启动config server会快速报错停止
+#      discovery:
+#        enabled: true
+#        service-id: hjconfig #config server 实例ID
+#  redis:
+#    database: 0
+#    host: 192.168.10.99
+#    password:
+#    port: 6379
+#    jedis:
+#      pool:
+#        #最大连接redis连接数，设0为没有限制
+#        max-active: 8
+#        #最大等待连接中的数量，设0为没有限制
+#        max-idle: 8
+#        #最大建立连接等待时间。如果超过此时间将接到异常。设为 -1 表示没有限制
+#        max-wait: -1ms
+#        #最小等待连接中的数量，设0为没有限制
+#        min-idle: 0

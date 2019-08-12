@@ -1,0 +1,9 @@
+#配置工作站ID和数据中心ID
+server:
+  port: 7200
+
+hjyd:
+  workerId: 1 #配置工作站ID,同一个 dataCenterId 的不同实例之前 workerId 值 不能重复
+  dataCenterId: 0 #数据中心ID,同一个服务器IP的dataCenterId必须一致
+  workerIdBits: 5 #workerIdBits + dataCenterIdBits 的固定值为10，workerIdBits = 5时，workerId 的 取值范围为 0 ~ (2^5)/2 - 1即 0 ~ 15
+  dataCenterIdBits: 5 #dataCenterIdBits = 5 时,workerId 的 取值范围为 0 ~ 2^5 - 1 即 0 ~ 31
